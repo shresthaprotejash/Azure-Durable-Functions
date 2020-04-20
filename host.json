@@ -1,0 +1,47 @@
+{
+  "version": "2.0",
+  "functionTimeout": "00:09:59",
+  "extensions": {
+    "http": {
+      "routePrefix": "",
+      "dynamicThrottlesEnabled": true,
+      "maxOutstandingRequests": 10000,
+      "maxConcurrentRequests": 5000
+    },
+    "durableTask": {
+      "hubName": "%HUB_NAME%",
+      "storageProvider": {
+        "connectionStringName": "AzureWebJobsStorage",
+        "partitionCount": 16,
+        "controlQueueBatchSize": 32,
+        "controlQueueBufferThreshold": 256
+      }
+    },
+    "queues": {
+      "batchSize": 32,
+      "newBatchThreshold": 128,
+      "visibilityTimeout": "00:00:05"
+    },
+    "eventHub": {
+      "maxBatchSize": 32,
+      "prefetchCount": 128,
+      "batchCheckpointFrequency": 5
+    },
+    "extensionBundle": {
+      "id": "Microsoft.Azure.Functions.ExtensionBundle",
+      "version": "[1.*, 2.0.0)"
+    },
+
+    "healthMonitor": {
+      "enabled": true,
+      "healthCheckInterval": "00:00:10",
+      "healthCheckWindow": "00:02:00",
+      "healthCheckThreshold": 6,
+      "counterThreshold": 0.8
+    },
+
+    "managedDependency": {
+      "enabled": true
+    }
+  }
+}
